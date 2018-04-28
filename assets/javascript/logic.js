@@ -37,6 +37,9 @@ function dumpNews() {
         }
         callNewsAPI(newQueryURL);
 
+
+    
+  
 }
 
 dumpNews();
