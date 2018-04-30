@@ -76,12 +76,15 @@ $(document).ready(function() {
  
     //Create a function to grab 3 random top head\
     function topHeadlines(){
+        
         for(var i = 0; i < 3; i++){
         
         //Variables for categories and the top headlines api url
-        var category = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
+        // var category = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
 
-        var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
+        shuffleArray();
+
+        var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -116,7 +119,7 @@ $(document).ready(function() {
 }
 
 topHeadlines();
-shuffleArray();
+// shuffleArray();
 
 // dumpNews();
 
