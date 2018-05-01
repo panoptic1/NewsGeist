@@ -4,7 +4,7 @@ $(document).ready(function() {
     var newsSources = [];
 
     //Variables for categories and the top headlines api url
-    var category = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
+    var category = ["business", "entertainment", "science", "health", "general", "sports", "technology"]
 
     function shuffleArray() {
         for(var i = category.length -1; i > 0; i--) {
@@ -15,6 +15,10 @@ $(document).ready(function() {
             console.log(test);
         }
     }
+
+    // <div class="carousel-item active">
+    //     <img class="d-block w-100" src="http://via.placeholder.com/350x150" alt="First slide">
+    // </div>
 
     $('#search-button').click(function(event) {
       event.preventDefault();
@@ -74,15 +78,10 @@ $(document).ready(function() {
       
     });
  
-    //Create a function to grab 3 random top head\
+    //Create a function to grab 3 random top headlines
     function topHeadlines(){
         
         for(var i = 0; i < 3; i++){
-        
-        //Variables for categories and the top headlines api url
-        // var category = ["business", "entertainment", "general", "health", "science", "sports", "technology"]
-
-        shuffleArray();
 
         var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
         console.log(queryURL);
@@ -91,11 +90,11 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
                 for(var i = 0; i < response.articles.length; i++) {
+                    console.log(response);
                     //make headline variables
                     var headlineSource = response.articles[i].source.name;
                     var headlineTitle = response.articles[i].title;
                     var headlineImage = response.articles[i].urlToImage;
-                    console.log(headlineImage);
                     var headlineURL = response.articles[i].url;
                     // make DOM variable containers
                     var headlinesDiv = $('<div class="col-4">');
@@ -107,18 +106,62 @@ $(document).ready(function() {
                     });
                     var title = $('<h5>').text(headlineTitle);
                     var image = $('<img class="img-fluid">').attr("src", headlineImage);
+
                     URLtag.append(title);
                     URLtag.append(image);
                     //append to the DOM
                     headlinesDiv.append(source);
                     headlinesDiv.append(URLtag);
+
                     $('#top-headlines').append(headlinesDiv);
                 }
         });
     }
 }
 
-topHeadlines();
+//CAROUSEL - ajax call to generate top headlines carousel
+function headlinesCarousel() {
+    for(var i = 0; i < 3; i++) {
+        var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
+        console.log(queryURL);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            for(var i = 0; i < response.articles.length; i++) {
+                console.log(response);
+                //make headlines variables
+                var headlineSource = response.articles[i].source.name;
+                var headlineTitle = response.articles[i].title;
+                var headlineImage = response.articles[i].urlToImage;
+                var headlineURL = response.articles[i].url;
+                // make DOM variable containers
+                var headlinesDiv = $('<div class="carousel-item">');
+                $('#headlines-carousel div').first().addClass("active");
+                //create variable to write to html
+                var source = $('<h6>').text(headlineSource);
+                var URLtag = $('<a>').attr({
+                    "href": headlineURL,
+                    "target": "_blank"
+                });
+                var title = $('<h5>').text(headlineTitle);
+                var image = $('<img class="d-block w-100 img-fluid">').attr("src", headlineImage);
+
+                URLtag.append(title);
+                URLtag.append(image);
+                //append to the DOM
+                headlinesDiv.append(source);
+                headlinesDiv.append(URLtag);
+                headlinesDiv.append(image);
+
+                $('#headlines-carousel').append(headlinesDiv);
+            }
+        });
+    }
+}
+
+// topHeadlines();
+headlinesCarousel();
 // shuffleArray();
 
 // dumpNews();
