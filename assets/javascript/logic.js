@@ -48,7 +48,7 @@ $(document).ready(function() {
                     //make article variables
                     var articleSource = response.articles[i].source.name;
                     // if(newsSources.includes(articleSource) === false) {
-                    //     newsSources.push(articleSource);
+                    //     newsSources.push(articleSource);1
                     //     console.log(newsSources);
                     // }
                     var articleTitle = response.articles[i].title;
@@ -137,6 +137,7 @@ function headlinesCarousel() {
                 var headlineURL = response.articles[i].url;
                 // make DOM variable containers
                 var headlinesDiv = $('<div class="carousel-item">');
+                var captionDiv = $('<div class="carousel-caption">');
                 $('#headlines-carousel div').first().addClass("active");
                 //create variable to write to html
                 var source = $('<h6>').text(headlineSource);
@@ -148,20 +149,20 @@ function headlinesCarousel() {
                 var image = $('<img class="d-block w-100 img-fluid">').attr("src", headlineImage);
 
                 URLtag.append(title);
-                URLtag.append(image);
+                // URLtag.append(image);
                 //append to the DOM
-                headlinesDiv.append(source);
-                headlinesDiv.append(URLtag);
+                captionDiv.append(source);
+                captionDiv.append(URLtag);
                 headlinesDiv.append(image);
-
+                headlinesDiv.append(captionDiv);
                 $('#headlines-carousel').append(headlinesDiv);
             }
         });
     }
 }
 
-// topHeadlines();
-headlinesCarousel();
+topHeadlines();
+// headlinesCarousel();
 // shuffleArray();
 
 // dumpNews();
