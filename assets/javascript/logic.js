@@ -46,9 +46,6 @@ $(document).ready(function() {
                    newsDiv.append(URLtag);
                    newsDiv.append(summary);
                    $('#headlinesContainer').append(newsDiv);
-Message Input
-
-Message @Nikolas Haug
              });
         }
     }
@@ -63,25 +60,6 @@ Message @Nikolas Haug
 
 
 
-
-/* function dumpNews() {
-
-    var keyword = "obama"
-
-    for(var i = 0; i < sources.length; i++) {
-        //Variables for keyword and API url
-        var queryURL = "https://newsapi.org/v2/everything?q=" + keyword + "&pageSize=1&sources=" + sources[i] + "&apiKey=8f648fabfb73464184ecb3df91ad60f5"
-        console.log(queryURL);
-
-        newQueryURL.push(queryURL);
-        // console.log(newQueryURL);
-        }
-        callNewsAPI(newQueryURL);
-
-
-    
-  
-} */
 
 function dumpNews() {
     var keyword = "obama"
