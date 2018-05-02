@@ -109,7 +109,7 @@ $(document).ready(function () {
                     var image = $("<img>");
                     image.attr("src", giphyResponse.data[i].images.fixed_height_small.url);
                     var colDivImage = $("<div>");
-                    colDivImage.addClass("col-3");
+                    colDivImage.addClass("col-3 pt-2");
                     colDivImage.addClass("giphy-image");
                     colDivImage.append(image);
 
@@ -186,6 +186,8 @@ $(document).ready(function () {
         var title = (childSnapshot.val().title);
         var source = (childSnapshot.val().source);
 
+        var archDiv = $('<div>');
+
         var urlTag = $('<a>').attr({
             "href": url,
             "target": "_blank"
@@ -195,11 +197,26 @@ $(document).ready(function () {
 
         urlTag.append(title);
 
+        archDiv.append(sourceTag);
+        archDiv.append(urlTag);
+
         var newsArchiveDiv = $('#news-archive');
 
-        newsArchiveDiv.append(source);
-        newsArchiveDiv.append(urlTag);
+        newsArchiveDiv.append(archDiv);
+    });
 
+    $('#modal-button').on('click', function() {
+        $('.tiny.modal').modal('show');
+        
     });
 });
+    $('#modal-form-button').on('click', function(evt) {
+        evt.preventDefault();
+        var rating = $('input[name="rating"]:checked').val();
+        var ratingsTag = $('<h1>');
+        ratingsTag.append(rating);
+        $('#ratings').append(ratingsTag);
+        $('.tiny.modal').modal('hide');
+    });
+    
 
