@@ -88,7 +88,7 @@ $(document).ready(function () {
     function dumpNews(searchTerm) {
 
         //Variables for keyword and API url
-        var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&pageSize=20&sources=al-jazeera-english,bbc-news,cnn,fortune,fox-news,msnbc,rt,the-economist,the-new-york-times,the-wall-street-journal,the-washington-post,vice-news,time,the-huffington-post,reuters,reddit-r-all,buzzfeed" + "&apiKey=8f648fabfb73464184ecb3df91ad60f5"
+        var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&pageSize=20&sources=al-jazeera-english,bbc-news,cnn,fortune,fox-news,msnbc,rt,the-economist,the-new-york-times,the-wall-street-journal,the-washington-post,vice-news,time,the-huffington-post,reuters,wired,the-american-conservative,the-hill,new-scientist,national-review&apiKey=8f648fabfb73464184ecb3df91ad60f5"
         console.log(queryURL);
         $.ajax({
             url: queryURL,
