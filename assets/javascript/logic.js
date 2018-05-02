@@ -3,10 +3,44 @@ $(document).ready(function () {
     //Variables for categories and the top headlines api url
     var category = ["business", "entertainment", "science", "health", "sports", "technology"]
 
+    // Initialize Firebase
+        var config = {
+        apiKey: "AIzaSyBfKzf6Wu3hngE26U0b8XQcDm01qs9Tq88",
+        authDomain: "news-dump.firebaseapp.com",
+        databaseURL: "https://news-dump.firebaseio.com",
+        projectId: "news-dump",
+        storageBucket: "news-dump.appspot.com",
+        messagingSenderId: "518830334765"
+    };
+    firebase.initializeApp(config);
+    
+    /**
+     * Shuffles array in place.
+     * @param {Array} arr items An array containing the items.
+     */
+        function shuffleArray(arr) {
+            var j, x;
+            for (var i = arr.length - 1; i > 0; i--) {
+                j = Math.floor(Math.random() * (i + 1));
+                x = arr[i];
+                arr[i] = arr[j];
+                arr[j] = x;
+            }
+            console.log(arr);
+            topHeadlines();
+            // headlinesCarousel();
+            return arr;
+        }
+
+        //call shuffle array and display headlines on page load
+        shuffleArray(category);
+ 
+    //Create a function to grab 3 random top headlines
+
     function topHeadlines(){
        
         for(var i = 0; i < 3; i++){
- 
+
         var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
         console.log(queryURL);
         $.ajax({
@@ -30,53 +64,28 @@ $(document).ready(function () {
                 });
                 var title = $('<h5>').text(headlineTitle);
                 var image = $('<img class="img-fluid">').attr("src", headlineImage);
- 
+
                 URLtag.append(title);
                 URLtag.append(image);
                 //append to the DOM
                 headlinesDiv.append(source);
                 headlinesDiv.append(URLtag);
- 
+
                 $('#top-headlines').append(headlinesDiv);
             }
         });
     }
  }
-    /**
-     * Shuffles array in place.
-     * @param {Array} arr items An array containing the items.
-     */
-    function shuffleArray(arr) {
-        var j, x;
-        for (var i = arr.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = arr[i];
-            arr[i] = arr[j];
-            arr[j] = x;
-        }
-        console.log(arr);
-        topHeadlines();
-        // headlinesCarousel();
-        return arr;
-    }
-
-
-
-    shuffleArray(category);
-
 
     $("#form").submit(function (event) {
         event.preventDefault();
         var data = $("#input-text").val()
         console.log(data);
         dumpNews(data);
+        $('#input-text').val("");
     })
 
-
-    
     function dumpNews(searchTerm) {
-
-
 
         //Variables for keyword and API url
         var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&pageSize=20&sources=al-jazeera-english,bbc-news,cnn,fortune,fox-news,msnbc,rt,the-economist,the-new-york-times,the-wall-street-journal,the-washington-post,vice-news,time,the-huffington-post,reuters,reddit-r-all,buzzfeed" + "&apiKey=8f648fabfb73464184ecb3df91ad60f5"
@@ -86,14 +95,11 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (newsResponse) {
 
-
-
             var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=BzhlAMzGGojL38kIs2BSyIbzcdZ8fHuo&limit=20";
 
             $.get(queryURL).then(function (giphyResponse) {
 
                 $("#headlinesContainer").empty();
-
 
                 for (var i = 0; i < 20; i++) {
                     //make article variables
@@ -105,8 +111,6 @@ $(document).ready(function () {
                     colDivImage.addClass("giphy-image");
                     colDivImage.append(image);
 
-
-
                     var articleSource = newsResponse.articles[i].source.name;
 
                     newsSources.push(articleSource);
@@ -117,7 +121,11 @@ $(document).ready(function () {
                     var articleURL = newsResponse.articles[i].url;
                     var articleDate = newsResponse.articles[i].publishedAt;
                     //make DOM variable containers
-
+                    var URLtag = $('<a>').attr({
+                        "href": articleURL,
+                        "target": "_blank"
+                    });
+                    var archiveButton = $('<button class="archive-button">').text("archive/rate");
                     var rowDiv = $("<div>");
                     rowDiv.append(colDivImage);
                     rowDiv.addClass("row appendedRow")
@@ -131,29 +139,19 @@ $(document).ready(function () {
                     var summary = $('<p>').text(articleDescription);
 
                     //append to the DOM
+                    URLtag.append(title);
                     newsDiv.append(source);
-                    newsDiv.append(title);
+                    newsDiv.append(URLtag);
                     newsDiv.append(summary);
+                    newsDiv.append(archiveButton);
                     // $('#headlinesContainer').append(newsDiv);
                     rowDiv.append(colDiv);
                     $("#headlinesContainer").append(rowDiv);
                     colDiv.append(newsDiv);
 
-
                 }
-
-
-
             })
-
-
-
-
-
-
-            
         });
     }
-
 });
 
