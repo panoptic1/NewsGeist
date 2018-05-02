@@ -3,45 +3,45 @@ $(document).ready(function () {
     //Variables for categories and the top headlines api url
     var category = ["business", "entertainment", "science", "health", "sports", "technology"]
 
-    function topHeadlines(){
-       
-        for(var i = 0; i < 3; i++){
- 
-        var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
-        console.log(queryURL);
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
-            for(var i = 0; i < response.articles.length; i++) {
-                console.log(response);
-                //make headline variables
-                var headlineSource = response.articles[i].source.name;
-                var headlineTitle = response.articles[i].title;
-                var headlineImage = response.articles[i].urlToImage;
-                var headlineURL = response.articles[i].url;
-                // make DOM variable containers
-                var headlinesDiv = $('<div class="col-4">');
-                //create variable to write to html
-                var source = $('<h6>').text(headlineSource);
-                var URLtag = $('<a>').attr({
-                    "href": headlineURL,
-                    "target": "_blank"
-                });
-                var title = $('<h5>').text(headlineTitle);
-                var image = $('<img class="img-fluid">').attr("src", headlineImage);
- 
-                URLtag.append(title);
-                URLtag.append(image);
-                //append to the DOM
-                headlinesDiv.append(source);
-                headlinesDiv.append(URLtag);
- 
-                $('#top-headlines').append(headlinesDiv);
-            }
-        });
+    function topHeadlines() {
+
+        for (var i = 0; i < 3; i++) {
+
+            var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
+            console.log(queryURL);
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                for (var i = 0; i < response.articles.length; i++) {
+                    console.log(response);
+                    //make headline variables
+                    var headlineSource = response.articles[i].source.name;
+                    var headlineTitle = response.articles[i].title;
+                    var headlineImage = response.articles[i].urlToImage;
+                    var headlineURL = response.articles[i].url;
+                    // make DOM variable containers
+                    var headlinesDiv = $('<div class="col-4">');
+                    //create variable to write to html
+                    var source = $('<h6>').text(headlineSource);
+                    var URLtag = $('<a>').attr({
+                        "href": headlineURL,
+                        "target": "_blank"
+                    });
+                    var title = $('<h5>').text(headlineTitle);
+                    var image = $('<img class="img-fluid">').attr("src", headlineImage);
+
+                    URLtag.append(title);
+                    URLtag.append(image);
+                    //append to the DOM
+                    headlinesDiv.append(source);
+                    headlinesDiv.append(URLtag);
+
+                    $('#top-headlines').append(headlinesDiv);
+                }
+            });
+        }
     }
- }
     /**
      * Shuffles array in place.
      * @param {Array} arr items An array containing the items.
@@ -70,10 +70,11 @@ $(document).ready(function () {
         var data = $("#input-text").val()
         console.log(data);
         dumpNews(data);
+        
     })
 
 
-    
+
     function dumpNews(searchTerm) {
 
 
@@ -146,12 +147,6 @@ $(document).ready(function () {
 
             })
 
-
-
-
-
-
-            
         });
     }
 
