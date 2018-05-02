@@ -42,51 +42,15 @@
         </div>
     </div> 
 
-    <div class="container">
+   
 
-        <div class="row">
-            <div class="col-md-6">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner" id="headlines-carousel">
-                        <!-- <div class="carousel-item active">
-                        <img class="d-block w-100" src="http://via.placeholder.com/350x150" alt="First slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>...</h5>
-                            <p>...</p>
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="http://via.placeholder.com/350x150" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="http://via.placeholder.com/350x150" alt="Third slide">
-                        </div> -->
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="container text-center">
-                    <div class="row ">
-                        <div class="col-12" id="search-div">
-                            <form>
-                                <input type="text" class="search" id="term">
-                                <button type="submit" class="btn btn-success searchBtn" id="search-button">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <div class="container text-center">
+        <div class="row ">
+            <div class="col-12">
+                <form id="form">
+                    <input required placeholder="Search Term" type="text" id="input-text" class="search form-control">
+                    <button type="submit" id="submit-btn" class="btn btn-success searchBtn">Search</button>
+                </form>
             </div>
         </div>
 
@@ -94,40 +58,19 @@
 
     
     
-    <div class="container">
-        <div class="row">
-            <div class="col-3" id="gifContainer">
-                <!-- gif images generated here -->
-            </div>
-            <div class="col-9">
-                <div class="container" id="headlinesContainer">
-                    <!-- articles generated here -->
-                    <!-- HEADLINES GO HERE
-                    "Append row, column-3 giphy; column-9 news api, H4 headline, h6 name of outlet, Ptag description, Atag url link " -->
-                </div>
-            </div>
-        </div>
+
+    <div class="container" id="headlinesContainer">
+        
+
     </div>
     
     
     
-    
 
-    <div id="dumpster"></div>
+    
     
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script>
-    // Initialize Firebase
-        var config = {
-        apiKey: "AIzaSyBfKzf6Wu3hngE26U0b8XQcDm01qs9Tq88",
-        authDomain: "news-dump.firebaseapp.com",
-        databaseURL: "https://news-dump.firebaseio.com",
-        projectId: "news-dump",
-        storageBucket: "news-dump.appspot.com",
-        messagingSenderId: "518830334765"
-    };
-    firebase.initializeApp(config);
-    </script>
+  
     <script src="https://unpkg.com/vue"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

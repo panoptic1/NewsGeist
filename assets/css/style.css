@@ -2,3 +2,22 @@ input {
     width: 30%;
     
 }
+
+img {
+    width: 100%;
+    
+}
+.giphy-image {
+    height: 185px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.search {
+    width: 80%;
+    display: inline;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#submit-btn {
+    margin-top: -5px;
+}
