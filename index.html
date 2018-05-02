@@ -55,38 +55,22 @@
     <div class="container text-center">
         <div class="row ">
             <div class="col-12">
-                <form>
-                    <input type="text" class="search">
-                    <button type="button" class="btn btn-success searchBtn">Search</button>
+                <form id="form">
+                    <input required placeholder="Search Term" type="text" id="input-text" class="search form-control">
+                    <button type="submit" id="submit-btn" class="btn btn-success searchBtn">Search</button>
                 </form>
             </div>
         </div>
     </div>
     
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <div class="container text-center headlinesContainer1">
-                    HEADLINES GO HERE
-                    "Append row, column-3 giphy; column-9 news api, H4 headline, h6 name of outlet, Ptag description, Atag url link "
-                </div>
-                
-            </div>
-            <div class="col-6">
-                <div class="container text-center headlinesContainer2">
-                    HEADLINES GO HERE 
-                    "Append row, column-3 giphy; column-9 news api, H4 headline, h6 name of outlet, Ptag description, Atag url link "
-                </div>
-                
-            </div>
-        </div>
+    <div class="container" id="headlinesContainer">
+        
     </div>
     
     
     
-    
 
-    <div id="dumpster"></div>
+    
     
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
