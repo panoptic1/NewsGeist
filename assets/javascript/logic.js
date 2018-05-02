@@ -13,6 +13,8 @@ $(document).ready(function () {
         messagingSenderId: "518830334765"
     };
     firebase.initializeApp(config);
+
+    var database = firebase.database();
     
     /**
      * Shuffles array in place.
@@ -88,7 +90,7 @@ $(document).ready(function () {
     function dumpNews(searchTerm) {
 
         //Variables for keyword and API url
-        var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&pageSize=20&sources=al-jazeera-english,bbc-news,cnn,fortune,fox-news,msnbc,rt,the-economist,the-new-york-times,the-wall-street-journal,the-washington-post,vice-news,time,the-huffington-post,reuters,reddit-r-all,buzzfeed" + "&apiKey=8f648fabfb73464184ecb3df91ad60f5"
+        var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&pageSize=20&sources=al-jazeera-english,bbc-news,cnn,fortune,fox-news,msnbc,rt,the-economist,the-new-york-times,the-wall-street-journal,the-washington-post,vice-news,time,the-huffington-post,reuters,wired,the-american-conservative,the-hill,new-scientist,national-review&apiKey=8f648fabfb73464184ecb3df91ad60f5"
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -126,6 +128,13 @@ $(document).ready(function () {
                         "target": "_blank"
                     });
                     var archiveButton = $('<button class="archive-button">').text("archive/rate");
+                    //add data attributes to each button
+                    archiveButton.attr({
+                        "data-url": articleURL,
+                        "data-title": articleTitle,
+                        "data-source": articleSource
+                    });
+
                     var rowDiv = $("<div>");
                     rowDiv.append(colDivImage);
                     rowDiv.addClass("row appendedRow")
@@ -153,5 +162,44 @@ $(document).ready(function () {
             })
         });
     }
+
+    //event listener for the archive buttons
+    $('#headlinesContainer').on('click', '.archive-button', function() {
+        var buttonDataUrl = $(this).attr('data-url');
+        var buttonDataTitle = $(this).attr('data-title');
+        var buttonDataSource = $(this).attr('data-source');
+
+        console.log(buttonDataUrl);
+        //make archived article object
+        var archivedArticle = {
+            url: buttonDataUrl,
+            title: buttonDataTitle,
+            source: buttonDataSource
+        }
+        database.ref().push(archivedArticle);
+    });
+
+    //get data from firebase and append to DOM
+    database.ref().on('child_added', function(childSnapshot, prevChildkey) {
+        
+        var url = (childSnapshot.val()).url;
+        var title = (childSnapshot.val().title);
+        var source = (childSnapshot.val().source);
+
+        var urlTag = $('<a>').attr({
+            "href": url,
+            "target": "_blank"
+        });
+        var sourceTag = $('<h5>').text(source);
+        var titleTag = $('<h4>').text(title);
+
+        urlTag.append(title);
+
+        var newsArchiveDiv = $('#news-archive');
+
+        newsArchiveDiv.append(source);
+        newsArchiveDiv.append(urlTag);
+
+    });
 });
 
