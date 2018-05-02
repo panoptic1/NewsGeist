@@ -94,32 +94,32 @@ $(document).ready(function() {
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-                for(var i = 0; i < response.articles.length; i++) {
-                    console.log(response);
-                    //make headline variables
-                    var headlineSource = response.articles[i].source.name;
-                    var headlineTitle = response.articles[i].title;
-                    var headlineImage = response.articles[i].urlToImage;
-                    var headlineURL = response.articles[i].url;
-                    // make DOM variable containers
-                    var headlinesDiv = $('<div class="col-4">');
-                    //create variable to write to html
-                    var source = $('<h6>').text(headlineSource);
-                    var URLtag = $('<a>').attr({
-                        "href": headlineURL,
-                        "target": "_blank"
-                    });
-                    var title = $('<h5>').text(headlineTitle);
-                    var image = $('<img class="img-fluid">').attr("src", headlineImage);
+            for(var i = 0; i < response.articles.length; i++) {
+                console.log(response);
+                //make headline variables
+                var headlineSource = response.articles[i].source.name;
+                var headlineTitle = response.articles[i].title;
+                var headlineImage = response.articles[i].urlToImage;
+                var headlineURL = response.articles[i].url;
+                // make DOM variable containers
+                var headlinesDiv = $('<div class="col-4">');
+                //create variable to write to html
+                var source = $('<h6>').text(headlineSource);
+                var URLtag = $('<a>').attr({
+                    "href": headlineURL,
+                    "target": "_blank"
+                });
+                var title = $('<h5>').text(headlineTitle);
+                var image = $('<img class="img-fluid">').attr("src", headlineImage);
 
-                    URLtag.append(title);
-                    URLtag.append(image);
-                    //append to the DOM
-                    headlinesDiv.append(source);
-                    headlinesDiv.append(URLtag);
+                URLtag.append(title);
+                URLtag.append(image);
+                //append to the DOM
+                headlinesDiv.append(source);
+                headlinesDiv.append(URLtag);
 
-                    $('#top-headlines').append(headlinesDiv);
-                }
+                $('#top-headlines').append(headlinesDiv);
+            }
         });
     }
 }
