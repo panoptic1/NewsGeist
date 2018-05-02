@@ -14,8 +14,9 @@
 
 <body>
     
+    <!-- bootstrap navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">placeholder</a>
+        <a class="navbar-brand" href="index.html">placeholder</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
          </button>
@@ -23,51 +24,25 @@
              <ul class="navbar-nav ml-auto">
                  <li class="nav-item active">
                      <a class="nav-link" href="archive.html">Archive</a>
-                 </li>
+                 </li> 
              </ul>
          </div>
      </nav>
-
+     <!-- bootstrap jumbotron -->
      <div class="jumbotron jumbotron-fluid text-center p-0">
         <div class="container">
-          <h1 class="display-4">NEWSGEIST</h1>
-          <p class="lead">Lorem ipsum.  Lorem ipsum.  Lorem ipsum.  Lorem ipsum.  Lorem ipsum.</p>
+          <h1 class="display-4">Archive</h1>
+          <p class="lead">a collection of articles chosen by users</p>
         </div>
       </div>
     
     <div class="container text-center">
-        <div class="row" id="top-headlines">
+        <div class="row" id="news-archive">
           <!-- generate random top headlines here -->
         </div>
     </div> 
-
     
-    <div class="container text-center">
-        <div class="row ">
-            <div class="col-12" id="search-div">
-                <form>
-                    <input type="text" class="search" id="term">
-                    <button type="submit" class="btn btn-success searchBtn" id="search-button">Search</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-3" id="gifContainer">
-                <!-- gif images generated here -->
-            </div>
-            <div class="col-9">
-                <div class="container" id="headlinesContainer">
-                    <!-- articles generated here -->
-                    <!-- HEADLINES GO HERE
-                    "Append row, column-3 giphy; column-9 news api, H4 headline, h6 name of outlet, Ptag description, Atag url link " -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    <!-- firebase link -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

@@ -1,7 +1,18 @@
 $(document).ready(function() {
+
+    // Initialize Firebase
+        var config = {
+        apiKey: "AIzaSyBfKzf6Wu3hngE26U0b8XQcDm01qs9Tq88",
+        authDomain: "news-dump.firebaseapp.com",
+        databaseURL: "https://news-dump.firebaseio.com",
+        projectId: "news-dump",
+        storageBucket: "news-dump.appspot.com",
+        messagingSenderId: "518830334765"
+    };
+    firebase.initializeApp(config);
     
     //Variables for categories and the top headlines api url
-    var category = ["business", "entertainment", "science", "health", "general", "sports", "technology"]
+    var category = ["business", "entertainment", "science", "health", "sports", "technology"]
 
     /**
      * Shuffles array in place.
@@ -21,6 +32,7 @@ $(document).ready(function() {
             return arr;
         }
 
+        //call shuffle array and display headlines on page load
         shuffleArray(category);
 
     $('#search-button').click(function(event) {
@@ -47,7 +59,8 @@ $(document).ready(function() {
                     var articleURL = response.articles[i].url;
                     var articleDate = response.articles[i].publishedAt;
                     // make DOM variable containers
-                    var newsDiv = $('<div class="m-2">');
+                    var newsDiv = $('<div class="m-4">');
+                    var archiveButton = $('<button class="archive-button">').text("archive/rate");
                     //create variable to write to html
                     var source = $('<h6>').text(articleSource);
                     var URLtag = $('<a>').attr({
@@ -61,6 +74,7 @@ $(document).ready(function() {
                     newsDiv.append(source);
                     newsDiv.append(URLtag);
                     newsDiv.append(summary);
+                    newsDiv.append(archiveButton);
                     $('#headlinesContainer').append(newsDiv);
                 }
                 $('#term').val("");
@@ -110,53 +124,7 @@ $(document).ready(function() {
     }
 }
 
-//CAROUSEL - ajax call to generate top headlines carousel
-function headlinesCarousel() {
-    for(var i = 0; i < 3; i++) {
-        var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
-        console.log(queryURL);
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
-            for(var i = 0; i < response.articles.length; i++) {
-                console.log(response);
-                //make headlines variables
-                var headlineSource = response.articles[i].source.name;
-                var headlineTitle = response.articles[i].title;
-                var headlineImage = response.articles[i].urlToImage;
-                var headlineURL = response.articles[i].url;
-                // make DOM variable containers
-                var headlinesDiv = $('<div class="carousel-item">');
-                var captionDiv = $('<div class="carousel-caption">');
-                $('#headlines-carousel div').first().addClass("active");
-                //create variable to write to html
-                var source = $('<h6>').text(headlineSource);
-                var URLtag = $('<a>').attr({
-                    "href": headlineURL,
-                    "target": "_blank"
-                });
-                var title = $('<h5>').text(headlineTitle);
-                var image = $('<img class="d-block w-100 img-fluid">').attr("src", headlineImage);
-
-                URLtag.append(title);
-                // URLtag.append(image);
-                //append to the DOM
-                captionDiv.append(source);
-                captionDiv.append(URLtag);
-                headlinesDiv.append(image);
-                headlinesDiv.append(captionDiv);
-                $('#headlines-carousel').append(headlinesDiv);
-            }
-        });
-    }
-}
-
 // topHeadlines();
-// headlinesCarousel();
-// shuffleArray();
-
-// dumpNews();
 
 });
 
