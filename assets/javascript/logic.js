@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     $("#form").submit(function (event) {
         event.preventDefault();
-        var data = $("#input-text").val();
+        var data = $("#input-text").val().trim();
         dumpNews(data);
         $('#input-text').val("");
         $('#top-headlines').empty();
@@ -116,6 +116,7 @@ $(document).ready(function () {
                     var articleDescription = newsResponse.articles[i].description;
                     var articleURL = newsResponse.articles[i].url;
                     var articleDate = newsResponse.articles[i].publishedAt;
+                    var articleDateConverted = moment(articleDate).format("MMMM Do YYYY");
                     //make DOM variable containers
                     var URLtag = $('<a>').attr({
                         "href": articleURL,
@@ -126,7 +127,8 @@ $(document).ready(function () {
                     archiveButton.attr({
                         "data-url": articleURL,
                         "data-title": articleTitle,
-                        "data-source": articleSource
+                        "data-source": articleSource,
+                        "data-date": articleDateConverted
                     });
 
                     var rowDiv = $("<div>");
@@ -140,12 +142,14 @@ $(document).ready(function () {
                     var source = $('<h6>').text(articleSource);
                     var title = $('<h5>').text(articleTitle);
                     var summary = $('<p>').text(articleDescription);
+                    var date = $('<span>').text(" - " + articleDateConverted);
 
                     //append to the DOM
                     URLtag.append(title);
                     newsDiv.append(source);
                     newsDiv.append(URLtag);
                     newsDiv.append(summary);
+                    source.append(date);
                     newsDiv.append(archiveButton);
                     // $('#headlinesContainer').append(newsDiv);
                     rowDiv.append(colDiv);
@@ -165,6 +169,7 @@ $(document).ready(function () {
         var buttonDataUrl = $(this).attr('data-url');
         var buttonDataTitle = $(this).attr('data-title');
         var buttonDataSource = $(this).attr('data-source');
+        var buttonDataDate = $(this).attr('data-date');
 
         // listener for the modal archive form
         $('#modal-form-button').on('click', function(evt) {
@@ -177,6 +182,7 @@ $(document).ready(function () {
                 url: buttonDataUrl,
                 title: buttonDataTitle,
                 source: buttonDataSource,
+                date: buttonDataDate,
                 rating: rating,
                 comment: selectComment
             }
@@ -201,6 +207,7 @@ $(document).ready(function () {
         var url = (childSnapshot.val()).url;
         var title = (childSnapshot.val().title);
         var source = (childSnapshot.val().source);
+        var date = (childSnapshot.val().date);
         var rating = (childSnapshot.val().rating);
         var comment = (childSnapshot.val().comment);
 
@@ -212,12 +219,13 @@ $(document).ready(function () {
         });
         var sourceTag = $('<h5>').text(source);
         var titleTag = $('<h4>').text(title);
+        var dateTag = $('<span>').text(" - " + date);
 
         var ratingsTag = $('<p>').text("Rating: " + rating);
         var commentTag = $('<p>').text("Category: " + comment);
 
         urlTag.append(title);
-
+        sourceTag.append(dateTag);
         archDiv.append(sourceTag);
         archDiv.append(urlTag);
         archDiv.append(ratingsTag);
