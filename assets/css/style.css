@@ -1,6 +1,4 @@
-/* input {
-    width: 30%;  
-} */
+/* custom css for news app */
 
 img {
     width: 100%;
@@ -14,17 +12,9 @@ img {
 .search {
     width: 80%;
     display: inline-block;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 #submit-btn {
     margin-top: -5px;
-}
-
-/* .modal { 
-    position: relative;
-} */
-
-form label {
-    display: block;
 }

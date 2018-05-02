@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Dump</title>
+    <title>NewsGeist</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- custom css -->
@@ -15,7 +15,7 @@
     
     <!-- bootstrap navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="index.html">placeholder</a>
+        <a class="navbar-brand" href="index.html">NewsGeist</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
          </button>
@@ -24,9 +24,13 @@
                  <li class="nav-item active">
                      <a class="nav-link" href="archive.html">Archive</a>
                  </li> 
+                 <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
              </ul>
          </div>
      </nav>
+
      <!-- bootstrap jumbotron -->
      <div class="jumbotron jumbotron-fluid text-center p-0">
         <div class="container">
@@ -35,6 +39,16 @@
         </div>
     </div>
 
+    <!-- link to home page/search -->
+    <div class="container">
+        <div class="row text-center">
+            <div class="col">
+                <h5><a href="index.html">back to search</a></h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- container for the archived articles -->
     <div class="container">
         <div class="row">
             <div class="col">
@@ -44,47 +58,14 @@
             </div>
         </div>
     </div> 
-
-    <!-- <button id="modal-button">show modal</button>
-
-    <div class="ui modal tiny">
-        <div class="header">
-            rate and archive this article
-        </div>
-        <form>
-            <div class="description">
-                <input type="radio" id="rating1"
-                name="rating" value="1">
-                    <label for="rating2">One</label>
-                <input type="radio" id="rating2"
-                name="rating" value="2">
-                    <label for="rating2">Two</label>
-                <input type="radio" id="rating3"
-                name="rating" value="3">
-                    <label for="rating3">Three</label>
-                <input type="radio" id="rating4"
-                name="rating" value="4">
-                    <label for="rating4">Four</label>
-                <input type="radio" id="rating5"
-                name="rating" value="5">
-                    <label for="rating5">Five</label>
-            </div>
-            <div>
-                <button type="submit" id="modal-form-button" class="ui button">Submit</button>
-            </div>
-        </form>
-    </div>
-
-    <div id="ratings">
-
-    </div> -->
     
     <!-- firebase link -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <!-- jquery -->
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <!-- bootstrap js -->
+    <!-- ajax and plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- bootstrap js -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- custom js logic for app -->
     <script src="assets/javascript/logic.js"></script>

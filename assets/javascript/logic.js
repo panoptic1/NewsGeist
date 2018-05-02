@@ -3,12 +3,6 @@ $(document).ready(function () {
     //Variables for categories and the top headlines api url
     var category = ["business", "entertainment", "science", "health", "sports", "technology"]
 
-    //global ratings variable
-    // var rating;
-    // var buttonDataUrl;
-    // var buttonDataTitle;
-    // var buttonDataSource;
-
     // Initialize Firebase
         var config = {
         apiKey: "AIzaSyBfKzf6Wu3hngE26U0b8XQcDm01qs9Tq88",
@@ -34,9 +28,8 @@ $(document).ready(function () {
                 arr[i] = arr[j];
                 arr[j] = x;
             }
-            console.log(arr);
+            //call the random headlines function on page load
             topHeadlines();
-            // headlinesCarousel();
             return arr;
         }
 
@@ -44,19 +37,16 @@ $(document).ready(function () {
         shuffleArray(category);
  
     //Create a function to grab 3 random top headlines
-
     function topHeadlines(){
-       
+
         for(var i = 0; i < 3; i++){
 
         var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
-        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response) {
             for(var i = 0; i < response.articles.length; i++) {
-                console.log(response);
                 //make headline variables
                 var headlineSource = response.articles[i].source.name;
                 var headlineTitle = response.articles[i].title;
@@ -87,17 +77,16 @@ $(document).ready(function () {
 
     $("#form").submit(function (event) {
         event.preventDefault();
-        var data = $("#input-text").val()
-        console.log(data);
+        var data = $("#input-text").val();
         dumpNews(data);
         $('#input-text').val("");
+        $('#top-headlines').empty();
     })
 
     function dumpNews(searchTerm) {
 
         //Variables for keyword and API url
         var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&pageSize=20&sources=al-jazeera-english,bbc-news,cnn,fortune,fox-news,msnbc,rt,the-economist,the-new-york-times,the-wall-street-journal,the-washington-post,vice-news,time,the-huffington-post,reuters,wired,the-american-conservative,the-hill,new-scientist,national-review&apiKey=8f648fabfb73464184ecb3df91ad60f5"
-        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -122,7 +111,6 @@ $(document).ready(function () {
                     var articleSource = newsResponse.articles[i].source.name;
 
                     newsSources.push(articleSource);
-                    //console.log(newsSources);
 
                     var articleTitle = newsResponse.articles[i].title;
                     var articleDescription = newsResponse.articles[i].description;
@@ -178,6 +166,7 @@ $(document).ready(function () {
         var buttonDataTitle = $(this).attr('data-title');
         var buttonDataSource = $(this).attr('data-source');
 
+        // listener for the modal archive form
         $('#modal-form-button').on('click', function(evt) {
             evt.preventDefault();
     
@@ -195,8 +184,15 @@ $(document).ready(function () {
             database.ref().push(archivedArticle);
 
             $('.modal').modal('hide');
-            
+            $('.alert').show();
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+
         });
+    });
+
+    //listener to hide archive alert
+    $('#alert-btn').on('click', function() {
+        $('.alert').fadeOut("slow");
     });
 
     //get data from firebase and append to DOM
@@ -231,33 +227,6 @@ $(document).ready(function () {
 
         newsArchiveDiv.append(archDiv);
     });
-
-    // $('#modal-button').on('click', function() {
-    //     $('.tiny.modal').modal('show');
-        
-    // });
-
-    // $('#modal-form-button').on('click', function(evt) {
-    //     evt.preventDefault();
-
-    //     var rating = $('input[name="rating"]:checked').val();
-
-    //     var archivedArticle = {
-    //         url: buttonDataUrl,
-    //         title: buttonDataTitle,
-    //         source: buttonDataSource,
-    //         rating: rating
-    //     }
-
-    //     database.ref().push(archivedArticle);
-
-    //     alert(rating);
-    //     // var ratingsTag = $('<h1>');
-    //     // ratingsTag.append(rating);
-    //     // $('#ratings').append(ratingsTag);
-    //     $('.tiny.modal').modal('hide');
-        
-    // });
 
 });
     
