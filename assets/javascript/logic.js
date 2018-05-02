@@ -28,9 +28,8 @@ $(document).ready(function () {
                 arr[i] = arr[j];
                 arr[j] = x;
             }
-            console.log(arr);
+            //call the random headlines function on page load
             topHeadlines();
-            // headlinesCarousel();
             return arr;
         }
 
@@ -38,19 +37,16 @@ $(document).ready(function () {
         shuffleArray(category);
  
     //Create a function to grab 3 random top headlines
-
     function topHeadlines(){
-       
+
         for(var i = 0; i < 3; i++){
 
         var queryURL = "https://newsapi.org/v2/top-headlines?category=" + category[i] + "&country=us&pageSize=1&apiKey=8f648fabfb73464184ecb3df91ad60f5"
-        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response) {
             for(var i = 0; i < response.articles.length; i++) {
-                console.log(response);
                 //make headline variables
                 var headlineSource = response.articles[i].source.name;
                 var headlineTitle = response.articles[i].title;
@@ -81,17 +77,16 @@ $(document).ready(function () {
 
     $("#form").submit(function (event) {
         event.preventDefault();
-        var data = $("#input-text").val()
-        console.log(data);
+        var data = $("#input-text").val().trim();
         dumpNews(data);
         $('#input-text').val("");
+        $('#top-headlines').empty();
     })
 
     function dumpNews(searchTerm) {
 
         //Variables for keyword and API url
         var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&pageSize=20&sources=al-jazeera-english,bbc-news,cnn,fortune,fox-news,msnbc,rt,the-economist,the-new-york-times,the-wall-street-journal,the-washington-post,vice-news,time,the-huffington-post,reuters,wired,the-american-conservative,the-hill,new-scientist,national-review&apiKey=8f648fabfb73464184ecb3df91ad60f5"
-        console.log(queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -109,19 +104,19 @@ $(document).ready(function () {
                     var image = $("<img>");
                     image.attr("src", giphyResponse.data[i].images.fixed_height_small.url);
                     var colDivImage = $("<div>");
-                    colDivImage.addClass("col-3");
+                    colDivImage.addClass("col-3 pt-2");
                     colDivImage.addClass("giphy-image");
                     colDivImage.append(image);
 
                     var articleSource = newsResponse.articles[i].source.name;
 
                     newsSources.push(articleSource);
-                    //console.log(newsSources);
 
                     var articleTitle = newsResponse.articles[i].title;
                     var articleDescription = newsResponse.articles[i].description;
                     var articleURL = newsResponse.articles[i].url;
                     var articleDate = newsResponse.articles[i].publishedAt;
+                    var articleDateConverted = moment(articleDate).format("MMMM Do YYYY");
                     //make DOM variable containers
                     var URLtag = $('<a>').attr({
                         "href": articleURL,
@@ -132,7 +127,8 @@ $(document).ready(function () {
                     archiveButton.attr({
                         "data-url": articleURL,
                         "data-title": articleTitle,
-                        "data-source": articleSource
+                        "data-source": articleSource,
+                        "data-date": articleDateConverted
                     });
 
                     var rowDiv = $("<div>");
@@ -146,12 +142,14 @@ $(document).ready(function () {
                     var source = $('<h6>').text(articleSource);
                     var title = $('<h5>').text(articleTitle);
                     var summary = $('<p>').text(articleDescription);
+                    var date = $('<span>').text(" - " + articleDateConverted);
 
                     //append to the DOM
                     URLtag.append(title);
                     newsDiv.append(source);
                     newsDiv.append(URLtag);
                     newsDiv.append(summary);
+                    source.append(date);
                     newsDiv.append(archiveButton);
                     // $('#headlinesContainer').append(newsDiv);
                     rowDiv.append(colDiv);
@@ -165,18 +163,42 @@ $(document).ready(function () {
 
     //event listener for the archive buttons
     $('#headlinesContainer').on('click', '.archive-button', function() {
+
+        $('.modal').modal('show');       
+
         var buttonDataUrl = $(this).attr('data-url');
         var buttonDataTitle = $(this).attr('data-title');
         var buttonDataSource = $(this).attr('data-source');
+        var buttonDataDate = $(this).attr('data-date');
 
-        console.log(buttonDataUrl);
-        //make archived article object
-        var archivedArticle = {
-            url: buttonDataUrl,
-            title: buttonDataTitle,
-            source: buttonDataSource
-        }
-        database.ref().push(archivedArticle);
+        // listener for the modal archive form
+        $('#modal-form-button').on('click', function(evt) {
+            evt.preventDefault();
+    
+            var rating = $('input[name="rating"]:checked').val();
+            var selectComment = $('#select-user-comment').val();
+    
+            var archivedArticle = {
+                url: buttonDataUrl,
+                title: buttonDataTitle,
+                source: buttonDataSource,
+                date: buttonDataDate,
+                rating: rating,
+                comment: selectComment
+            }
+    
+            database.ref().push(archivedArticle);
+
+            $('.modal').modal('hide');
+            $('.alert').show();
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+
+        });
+    });
+
+    //listener to hide archive alert
+    $('#alert-btn').on('click', function() {
+        $('.alert').fadeOut("slow");
     });
 
     //get data from firebase and append to DOM
@@ -185,6 +207,11 @@ $(document).ready(function () {
         var url = (childSnapshot.val()).url;
         var title = (childSnapshot.val().title);
         var source = (childSnapshot.val().source);
+        var date = (childSnapshot.val().date);
+        var rating = (childSnapshot.val().rating);
+        var comment = (childSnapshot.val().comment);
+
+        var archDiv = $('<div>');
 
         var urlTag = $('<a>').attr({
             "href": url,
@@ -192,14 +219,24 @@ $(document).ready(function () {
         });
         var sourceTag = $('<h5>').text(source);
         var titleTag = $('<h4>').text(title);
+        var dateTag = $('<span>').text(" - " + date);
+
+        var ratingsTag = $('<p>').text("Rating: " + rating);
+        var commentTag = $('<p>').text("Category: " + comment);
 
         urlTag.append(title);
+        sourceTag.append(dateTag);
+        archDiv.append(sourceTag);
+        archDiv.append(urlTag);
+        archDiv.append(ratingsTag);
+        archDiv.append(commentTag);
 
         var newsArchiveDiv = $('#news-archive');
 
-        newsArchiveDiv.append(source);
-        newsArchiveDiv.append(urlTag);
-
+        newsArchiveDiv.append(archDiv);
     });
+
 });
+    
+    
 
