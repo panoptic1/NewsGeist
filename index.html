@@ -8,7 +8,7 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--Semantic UI-->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -54,6 +54,35 @@
     
     <div class="container" id="headlinesContainer">
         <!-- generate the news headlines after search here -->
+    </div>
+
+    <!-- modal for the ratings and archive button -->
+    <div class="ui modal tiny">
+        <div class="header">
+            rate and archive this article
+        </div>
+        <form>
+            <div class="description">
+                <input type="radio" id="rating1"
+                name="rating" value="1">
+                    <label for="rating2">One</label>
+                <input type="radio" id="rating2"
+                name="rating" value="2">
+                    <label for="rating2">Two</label>
+                <input type="radio" id="rating3"
+                name="rating" value="3">
+                    <label for="rating3">Three</label>
+                <input type="radio" id="rating4"
+                name="rating" value="4">
+                    <label for="rating4">Four</label>
+                <input type="radio" id="rating5"
+                name="rating" value="5">
+                    <label for="rating5">Five</label>
+            </div>
+            <div>
+                <button type="submit" id="modal-form-button" class="ui button">Submit</button>
+            </div>
+        </form>
     </div>
     
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>

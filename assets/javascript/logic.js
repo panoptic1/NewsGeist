@@ -3,6 +3,12 @@ $(document).ready(function () {
     //Variables for categories and the top headlines api url
     var category = ["business", "entertainment", "science", "health", "sports", "technology"]
 
+    //global ratings variable
+    var rating;
+    var buttonDataUrl;
+    var buttonDataTitle;
+    var buttonDataSource;
+
     // Initialize Firebase
         var config = {
         apiKey: "AIzaSyBfKzf6Wu3hngE26U0b8XQcDm01qs9Tq88",
@@ -165,18 +171,39 @@ $(document).ready(function () {
 
     //event listener for the archive buttons
     $('#headlinesContainer').on('click', '.archive-button', function() {
+
+        $('.tiny.modal').modal('show');        
+
         var buttonDataUrl = $(this).attr('data-url');
         var buttonDataTitle = $(this).attr('data-title');
         var buttonDataSource = $(this).attr('data-source');
 
+        $('#modal-form-button').on('click', function(evt) {
+            evt.preventDefault();
+    
+            var rating = $('input[name="rating"]:checked').val();
+    
+            var archivedArticle = {
+                url: buttonDataUrl,
+                title: buttonDataTitle,
+                source: buttonDataSource,
+                rating: rating
+            }
+    
+            database.ref().push(archivedArticle);
+            
+            $('.tiny.modal').modal('hide');
+            
+        });
+
         console.log(buttonDataUrl);
         //make archived article object
-        var archivedArticle = {
-            url: buttonDataUrl,
-            title: buttonDataTitle,
-            source: buttonDataSource
-        }
-        database.ref().push(archivedArticle);
+        // var archivedArticle = {
+        //     url: buttonDataUrl,
+        //     title: buttonDataTitle,
+        //     source: buttonDataSource
+        // }
+        // database.ref().push(archivedArticle);
     });
 
     //get data from firebase and append to DOM
@@ -185,6 +212,7 @@ $(document).ready(function () {
         var url = (childSnapshot.val()).url;
         var title = (childSnapshot.val().title);
         var source = (childSnapshot.val().source);
+        var rating = (childSnapshot.val().rating);
 
         var archDiv = $('<div>');
 
@@ -195,28 +223,47 @@ $(document).ready(function () {
         var sourceTag = $('<h5>').text(source);
         var titleTag = $('<h4>').text(title);
 
+        var ratingsTag = $('<p>').text("Rating: " + rating);
+
         urlTag.append(title);
 
         archDiv.append(sourceTag);
         archDiv.append(urlTag);
+        archDiv.append(ratingsTag);
 
         var newsArchiveDiv = $('#news-archive');
 
         newsArchiveDiv.append(archDiv);
     });
 
-    $('#modal-button').on('click', function() {
-        $('.tiny.modal').modal('show');
+    // $('#modal-button').on('click', function() {
+    //     $('.tiny.modal').modal('show');
         
-    });
+    // });
+
+    // $('#modal-form-button').on('click', function(evt) {
+    //     evt.preventDefault();
+
+    //     var rating = $('input[name="rating"]:checked').val();
+
+    //     var archivedArticle = {
+    //         url: buttonDataUrl,
+    //         title: buttonDataTitle,
+    //         source: buttonDataSource,
+    //         rating: rating
+    //     }
+
+    //     database.ref().push(archivedArticle);
+
+    //     alert(rating);
+    //     // var ratingsTag = $('<h1>');
+    //     // ratingsTag.append(rating);
+    //     // $('#ratings').append(ratingsTag);
+    //     $('.tiny.modal').modal('hide');
+        
+    // });
+
 });
-    $('#modal-form-button').on('click', function(evt) {
-        evt.preventDefault();
-        var rating = $('input[name="rating"]:checked').val();
-        var ratingsTag = $('<h1>');
-        ratingsTag.append(rating);
-        $('#ratings').append(ratingsTag);
-        $('.tiny.modal').modal('hide');
-    });
+    
     
 
