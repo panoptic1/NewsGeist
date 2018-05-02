@@ -1,7 +1,6 @@
-input {
-    width: 30%;
-    
-}
+/* input {
+    width: 30%;  
+} */
 
 img {
     width: 100%;
@@ -22,9 +21,9 @@ img {
     margin-top: -5px;
 }
 
-.modal { 
+/* .modal { 
     position: relative;
-}
+} */
 
 form label {
     display: block;

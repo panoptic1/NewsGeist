@@ -4,10 +4,10 @@ $(document).ready(function () {
     var category = ["business", "entertainment", "science", "health", "sports", "technology"]
 
     //global ratings variable
-    var rating;
-    var buttonDataUrl;
-    var buttonDataTitle;
-    var buttonDataSource;
+    // var rating;
+    // var buttonDataUrl;
+    // var buttonDataTitle;
+    // var buttonDataSource;
 
     // Initialize Firebase
         var config = {
@@ -172,7 +172,7 @@ $(document).ready(function () {
     //event listener for the archive buttons
     $('#headlinesContainer').on('click', '.archive-button', function() {
 
-        $('.tiny.modal').modal('show');        
+        $('.modal').modal('show');       
 
         var buttonDataUrl = $(this).attr('data-url');
         var buttonDataTitle = $(this).attr('data-title');
@@ -182,28 +182,21 @@ $(document).ready(function () {
             evt.preventDefault();
     
             var rating = $('input[name="rating"]:checked').val();
+            var selectComment = $('#select-user-comment').val();
     
             var archivedArticle = {
                 url: buttonDataUrl,
                 title: buttonDataTitle,
                 source: buttonDataSource,
-                rating: rating
+                rating: rating,
+                comment: selectComment
             }
     
             database.ref().push(archivedArticle);
-            
-            $('.tiny.modal').modal('hide');
+
+            $('.modal').modal('hide');
             
         });
-
-        console.log(buttonDataUrl);
-        //make archived article object
-        // var archivedArticle = {
-        //     url: buttonDataUrl,
-        //     title: buttonDataTitle,
-        //     source: buttonDataSource
-        // }
-        // database.ref().push(archivedArticle);
     });
 
     //get data from firebase and append to DOM
@@ -213,6 +206,7 @@ $(document).ready(function () {
         var title = (childSnapshot.val().title);
         var source = (childSnapshot.val().source);
         var rating = (childSnapshot.val().rating);
+        var comment = (childSnapshot.val().comment);
 
         var archDiv = $('<div>');
 
@@ -224,12 +218,14 @@ $(document).ready(function () {
         var titleTag = $('<h4>').text(title);
 
         var ratingsTag = $('<p>').text("Rating: " + rating);
+        var commentTag = $('<p>').text("Category: " + comment);
 
         urlTag.append(title);
 
         archDiv.append(sourceTag);
         archDiv.append(urlTag);
         archDiv.append(ratingsTag);
+        archDiv.append(commentTag);
 
         var newsArchiveDiv = $('#news-archive');
 
