@@ -190,6 +190,7 @@ $(document).ready(function () {
                 comment: selectComment
             }
     
+
             database.ref().push(archivedArticle);
 
             $('.modal').modal('hide');
@@ -197,6 +198,11 @@ $(document).ready(function () {
             $("html, body").animate({ scrollTop: 0 }, "slow");
 
         });
+    });
+
+    //listener for top of page ARCHIVE PAGE -- TO DO --
+    $('.top-of-page').on('click', function() {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
     });
 
     //listener to hide archive alert
@@ -208,6 +214,12 @@ $(document).ready(function () {
     database.ref().on('child_added', function(childSnapshot, prevChildkey) {
         
         var url = (childSnapshot.val()).url;
+
+        //check if url exists in the DOM, if so don't append (user will not see it) - TO DO - add user auth
+        if($("a[href='" + url + "']").length > 0) {
+            return;
+        }
+
         var title = (childSnapshot.val().title);
         var source = (childSnapshot.val().source);
         var date = (childSnapshot.val().date);
@@ -236,10 +248,26 @@ $(document).ready(function () {
 
         var newsArchiveDiv = $('#news-archive');
 
-        newsArchiveDiv.append(archDiv);
+        //append the varying category/comment articles to different divs
+        if(comment === "comedy") {
+            $('#category-comedy').append(archDiv);
+        }
+        if(comment === "curious and thought provoking") {
+            $('#category-thought-provoking').append(archDiv);
+        }
+
+        //USE THIS TO SHOW ALL ARCHIVED ARTICLES -- BEFORE MAKING BUTTON LINKS
+        // newsArchiveDiv.append(archDiv);
+    });
+
+    $('#comedy').on('click', function() {
+        $('#category-comedy').show();
     });
 
 });
+
+// logic to sort the archive by category
+
     
     
 
