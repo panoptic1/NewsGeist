@@ -36,7 +36,7 @@ $(document).ready(function () {
         //call shuffle array and display headlines on page load
         shuffleArray(category);
  
-    //Create a function to grab 3 random top headlines
+    //function to grab 3 random top headlines from all possible sources
     function topHeadlines(){
 
         for(var i = 0; i < 3; i++){
@@ -53,7 +53,7 @@ $(document).ready(function () {
                 var headlineImage = response.articles[i].urlToImage;
                 var headlineURL = response.articles[i].url;
                 // make DOM variable containers
-                var headlinesDiv = $('<div class="col-4">');
+                var headlinesDiv = $('<div class="col-md-4 col-sm-12">');
                 //create variable to write to html
                 var source = $('<h6>').text(headlineSource);
                 var URLtag = $('<a>').attr({
@@ -75,14 +75,17 @@ $(document).ready(function () {
     }
  }
 
+    // listener for user input on the search bar
     $("#form").submit(function (event) {
         event.preventDefault();
         var data = $("#input-text").val().trim();
         dumpNews(data);
         $('#input-text').val("");
         $('#top-headlines').empty();
+        $('.alert').hide();
     })
 
+    // function to call the news and giphy apis after the search term is entered by user
     function dumpNews(searchTerm) {
 
         //Variables for keyword and API url

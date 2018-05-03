@@ -1,5 +1,10 @@
 /* custom css for news app */
 
+html, body {
+    height: 100%;
+    /* background-color: red; */
+}
+
 img {
     width: 100%;
     
@@ -17,4 +22,13 @@ img {
 }
 #submit-btn {
     margin-top: -5px;
+}
+
+/* .modal {
+    background-color: green;
+} */
+
+.modal-body {
+    background-color: black;
+    color: #fff;
 }
