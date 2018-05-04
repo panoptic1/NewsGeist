@@ -95,7 +95,7 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (newsResponse) {
 
-            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=BzhlAMzGGojL38kIs2BSyIbzcdZ8fHuo&limit=20";
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=BzhlAMzGGojL38kIs2BSyIbzcdZ8fHuo&limit=20";
 
             $.get(queryURL).then(function (giphyResponse) {
 
