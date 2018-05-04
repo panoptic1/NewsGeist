@@ -18,3 +18,36 @@ img {
 #submit-btn {
     margin-top: -5px;
 }
+
+.navbar {
+    font-family: 'Oswald', sans-serif;
+}
+
+.jumbotron {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1.0 px;}
+
+.summary {
+    font-family: 'Pragati Narrow', sans-serif;
+    font-size: 125%;
+}
+
+.source {
+    font-family: 'Oswald', sans-serif;
+}
+
+.title{
+    font-family: 'Crimson Text', serif;
+    font-weight: bold;
+    font-size: 150%;
+    color: #692525;
+}
+
+#headlinesContainer a{
+    text-decoration: none;
+}
+
+#top-headlines a {
+    text-decoration: none;
+    color: #692525;
+}

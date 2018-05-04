@@ -55,12 +55,12 @@ $(document).ready(function () {
                 // make DOM variable containers
                 var headlinesDiv = $('<div class="col-4">');
                 //create variable to write to html
-                var source = $('<h6>').text(headlineSource);
+                var source = $('<h6 class="source">').text(headlineSource);
                 var URLtag = $('<a>').attr({
                     "href": headlineURL,
                     "target": "_blank"
                 });
-                var title = $('<h5>').text(headlineTitle);
+                var title = $('<h5 class="title">').text(headlineTitle);
                 var image = $('<img class="img-fluid">').attr("src", headlineImage);
 
                 URLtag.append(title);
@@ -74,6 +74,7 @@ $(document).ready(function () {
         });
     }
  }
+
 
     $("#form").submit(function (event) {
         event.preventDefault();
@@ -139,10 +140,10 @@ $(document).ready(function () {
                     var newsDiv = $('<div class="m-2">');
 
                     //create variable to write to html
-                    var source = $('<h6>').text(articleSource);
-                    var title = $('<h5>').text(articleTitle);
-                    var summary = $('<p>').text(articleDescription);
-                    var date = $('<span>').text(" - " + articleDateConverted);
+                    var source = $('<h6 class="source">').text(articleSource);
+                    var title = $('<h5 class="title">').text(articleTitle);
+                    var summary = $('<p class="summary">').text(articleDescription);
+                    var date = $('<span class="date">').text(" - " + articleDateConverted);
 
                     //append to the DOM
                     URLtag.append(title);
