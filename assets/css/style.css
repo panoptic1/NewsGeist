@@ -1,5 +1,9 @@
 /* custom css for news app */
 
+/* ============================================
+GENERAL STYLES
+=============================================== */
+
 html, body {
     height: 100%;
     background-image: url('../images/grey_wash_wall.png');
@@ -13,13 +17,121 @@ html, body {
     background-color: #d9d9d9;
 }
 
+img {
+    width: 100%;
+}
+
+/* ============================================
+TYPOGRAPHY
+=============================================== */
+
+.jumbotron {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1.0 px;
+}
+
+h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+}
+
+.summary {
+    font-family: 'Pragati Narrow', sans-serif;
+    font-size: 125%;
+}
+
+.title {
+    font-family: 'Crimson Text', serif;
+    font-weight: bold;
+    color: #692525;
+}
+
+/* ============================================
+LINKS
+=============================================== */
+
+/* home/search page */
+
+#headlinesContainer a {
+    text-decoration: none;
+}
+
+#top-headlines a {
+    text-decoration: none;
+    color: #692525;
+}
+
+/* archive page */
+
+.title-link {
+    /* font-size: 20px; */
+    /* color: #692525; */
+}
+
+.title-link:hover {
+    text-decoration: none;
+    color: #250808;
+    transition: all, 0.3s;
+}
+
+/* ============================================
+BUTTONS
+=============================================== */
+
+.archive-button {
+    padding: 0 10px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px #999;
+    }
+    
+ .archive-button:hover {
+    background-color: #3e8e41;
+    transition: all, 0.5s;
+}
+
+/* ============================================
+MODALS
+=============================================== */
+
+.modal-body {
+    background-color: black;
+    color: #fff;
+}
+
+/* .modal {
+    background-color: green;
+} */
+
+/* ============================================
+NAVBAR
+=============================================== */
+
+.navbar {
+    font-family: 'Oswald', sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* ============================================
+HOME PAGE - SEARCH
+=============================================== */
+
 .top-headlines-container {
     height: 100%;
 }
 
-img {
-    width: 100%;
-}
+.appendedRow:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    border-bottom: 2px solid #bfbfbf; 
+ }
 
 .giphy-image {
     height: 185px;
@@ -38,75 +150,27 @@ img {
     margin-top: -5px;
 }
 
-.navbar {
+/* ============================================
+ARCHIVE PAGE
+=============================================== */
+
+
+
+
+/* .source {
     font-family: 'Oswald', sans-serif;
-    background-color: #f2f2f2;
-}
-
-.jumbotron {
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 1.0 px;}
-
-.summary {
-    font-family: 'Pragati Narrow', sans-serif;
-    font-size: 125%;
-}
-
-.source {
-    font-family: 'Oswald', sans-serif;
-}
-
-.title{
-    font-family: 'Crimson Text', serif;
-    font-weight: bold;
-    font-size: 150%;
-    color: #692525;
-}
-
-#headlinesContainer a{
-    text-decoration: none;
-}
-
-#top-headlines a {
-    text-decoration: none;
-    color: #692525;
-}
-
-/* .modal {
-    background-color: green;
 } */
 
-.modal-body {
-    background-color: black;
-    color: #fff;
-}
 
-i {
+
+
+
+
+
+
+/* i:hover {
     cursor: pointer;
-}
+} */
 
-.appendedRow:after {
-    content: "";
-    display: block;
-    margin: 0 auto;
-    width: 15%;
-    border-bottom: 2px solid #bfbfbf; 
- }
 
- .archive-button {
-    padding: 0 10px;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 1px #999;
-    transition: .5s;
-    }
-    
- .archive-button:hover {
-    background-color: #3e8e41}
 

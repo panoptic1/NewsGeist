@@ -55,12 +55,12 @@ $(document).ready(function () {
                 // make DOM variable containers
                 var headlinesDiv = $('<div class="col-md-4 col-sm-12">');
                 //create variable to write to html
-                var source = $('<h6 class="source">').text(headlineSource);
+                var source = $('<h5 class="source">').text(headlineSource);
                 var URLtag = $('<a>').attr({
                     "href": headlineURL,
                     "target": "_blank"
                 });
-                var title = $('<h5 class="title">').text(headlineTitle);
+                var title = $('<h4 class="title title-link">').text(headlineTitle);
                 var image = $('<img class="img-fluid">').attr("src", headlineImage);
 
                 URLtag.append(title);
@@ -107,7 +107,7 @@ $(document).ready(function () {
                     var image = $("<img>");
                     image.attr("src", giphyResponse.data[i].images.fixed_height_small.url);
                     var colDivImage = $("<div>");
-                    colDivImage.addClass("col-3 pt-2");
+                    colDivImage.addClass("col-3 pt-3");
                     colDivImage.addClass("giphy-image");
                     colDivImage.append(image);
 
@@ -138,12 +138,12 @@ $(document).ready(function () {
                     rowDiv.append(colDivImage);
                     rowDiv.addClass("row appendedRow")
                     var colDiv = $("<div>")
-                    colDiv.addClass("col-9")
+                    colDiv.addClass("col-9 py-2")
                     var newsDiv = $('<div class="m-2">');
 
                     //create variable to write to html
                     var source = $('<h6 class="source">').text(articleSource);
-                    var title = $('<h5 class="title">').text(articleTitle);
+                    var title = $('<h5 class="title title-link">').text(articleTitle);
                     var summary = $('<p class="summary">').text(articleDescription);
                     var date = $('<span class="date">').text(" - " + articleDateConverted);
 
@@ -228,7 +228,7 @@ $(document).ready(function () {
 
         var archDiv = $('<div>');
 
-        var urlTag = $('<a>').attr({
+        var urlTag = $('<a class="title-link">').attr({
             "href": url,
             "target": "_blank"
         });
