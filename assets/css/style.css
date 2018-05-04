@@ -30,8 +30,14 @@ TYPOGRAPHY
     letter-spacing: 1.0 px;
 }
 
-h4, h5, h6 {
+h4, h5, h6, p {
     font-family: 'Oswald', sans-serif;
+    color: #141414;
+}
+
+p {
+    font-size: 18px;
+    letter-spacing: 0.5px;
 }
 
 .summary {
@@ -64,7 +70,16 @@ LINKS
 
 .title-link {
     /* font-size: 20px; */
-    /* color: #692525; */
+    color: #692525;
+}
+
+a {
+    color: #250808;
+}
+
+a:hover {
+    color: #692525;
+    transition: all, 0.5s;
 }
 
 .title-link:hover {
@@ -72,6 +87,17 @@ LINKS
     color: #250808;
     transition: all, 0.3s;
 }
+
+.home-link {
+    border-right: 1px solid #250808;
+    border-left: 1px solid #250808;
+}
+
+.home-link:hover {
+    color: #d9d9d9;
+}
+
+
 
 /* ============================================
 BUTTONS
@@ -152,7 +178,7 @@ HOME PAGE - SEARCH
     height: 100%;
 }
 
-hr {
+.main-hr {
     width: 50%;
 }
 
@@ -185,6 +211,40 @@ hr {
 ARCHIVE PAGE
 =============================================== */
 
+.archive-div:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    border-bottom: 2px solid #bfbfbf; 
+ }
+
+.category-header {
+    color: #4CAF50;
+}
+
+.category-link .nav-link {
+    font-family: 'Pragati Narrow', sans-serif;
+    font-size: 125%;
+    letter-spacing: 0.7px;
+}
+
+.category-title {
+    font-family: 'Oswald', sans-serif;
+    color: #4CAF50;
+}
+
+.archive-title {
+    color: #692525;
+}
+
+.svg-inline--fa.fa-w-10 {
+    color: #692525;
+}
+
+.svg-inline--fa.fa-w-10:hover {
+    cursor: pointer;
+}
 
 
 

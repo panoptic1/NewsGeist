@@ -226,27 +226,27 @@ $(document).ready(function () {
         var rating = (childSnapshot.val().rating);
         var comment = (childSnapshot.val().comment);
 
-        var archDiv = $('<div>');
+        var archDiv = $('<div class="mt-4 archive-div">');
 
         var urlTag = $('<a class="title-link">').attr({
             "href": url,
             "target": "_blank"
         });
         var sourceTag = $('<h5>').text(source);
-        var titleTag = $('<h4>').text(title);
+        var titleTag = $('<h4 class="archive-title title-link">').text(title);
         var dateTag = $('<span>').text(" - " + date);
 
-        var ratingsTag = $('<p>').text("Rating: " + rating);
+        var ratingsTag = $('<p class="mb-0">').text("Rating: " + rating);
         var commentTag = $('<p>').text("Category: " + comment);
 
-        urlTag.append(title);
+        urlTag.append(titleTag);
         sourceTag.append(dateTag);
         archDiv.append(sourceTag);
         archDiv.append(urlTag);
         archDiv.append(ratingsTag);
         archDiv.append(commentTag);
 
-        var newsArchiveDiv = $('#news-archive');
+        // var newsArchiveDiv = $('#news-archive');
 
         //append the varying category/comment articles to different divs
         if(comment === "excellent journalism") {
