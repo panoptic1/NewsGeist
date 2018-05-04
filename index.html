@@ -32,21 +32,46 @@
      </nav>
 
      <!-- main header -->
-     <div class="jumbotron jumbotron-fluid text-center p-0 mb-1">
-        <div class="container">
+     <div class="jumbotron jumbotron-fluid text-center p-0 mb-0">
+        <div class="container-fluid">
           <h1 class="display-4">NEWSGEIST</h1>
-          <p class="lead">The news aggregator for discerning readers.</p>
+          <p class="mb-0">The news aggregator for discerning readers.</p>
         </div>
     </div>
 
     <!-- container for alert -->
-    <div class="container" id="alerts-container">
+    <div class="container pt-3" id="alerts-container">
         <div class="alert alert-warning alert-dismissible mb-0" style="display: none" role="alert">
             <strong>Article archived!</strong> - look for it in the NewsGeist <a href="archive.html" class="alert-link">archive</a>
             <button type="button" class="close" aria-label="Close" id="alert-btn">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+    </div>
+
+     <!-- news headlines search bar -->
+    <div class="container">
+
+        <div class="row text-center">
+            <div class="col-12">
+                <form id="form">
+                    <!-- TO DO check autocomplete attribute -->
+                    <input required placeholder="Search Term" type="text" id="input-text" class="search form-control" autocomplete="off">
+                    <button type="submit" id="submit-btn" class="btn btn-success searchBtn">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- main headlines container -->
+        <div class="row text-center my-2 pb-4 px-2" id="top-headlines">
+            <!-- generate random top headlines here -->
+        </div>
+        
+        <!-- queried headlines container -->
+        <div class="container" id="headlinesContainer">
+            <!-- generate the news headlines after search here -->
+        </div>
+        
     </div>
 
     <!-- container for modal -->
@@ -79,11 +104,11 @@
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="rating" id="inlineRadio4" value="4">
-                    <label class="form-check-label" for="inlineRadio3">4</label>
+                    <label class="form-check-label" for="inlineRadio4">4</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="rating" id="inlineRadio5" value="5">
-                    <label class="form-check-label" for="inlineRadio3">5</label>
+                    <label class="form-check-label" for="inlineRadio5">5</label>
                 </div>
                 <!-- selections for comment -->
                 <div class="form-group mt-3">
@@ -91,8 +116,13 @@
                     <select class="form-control" id="select-user-comment">
                         <option>excellent journalism</option>
                         <option>curious and thought provoking</option>
-                        <option>head scratcher</option>
+                        <option>head-scratcher</option>
                         <option>comedy</option>
+                        <option>inspirational</option>
+                        <option>persuasive</option>
+                        <option>needs fact checking</option>
+                        <option>depressing</option>
+                        <option>rage-inducing</option>
                         <option>borderline propaganda</option>
                     </select>
                 </div>
@@ -107,30 +137,9 @@
     </div>
     </div>
 
-    <!-- news headlines search bar -->
-    <div class="container text-center">
-            <div class="row ">
-                <div class="col-12">
-                    <form id="form">
-                        <!-- TO DO check autocomplete attribute -->
-                        <input required placeholder="Search Term" type="text" id="input-text" class="search form-control" autocomplete="off">
-                        <button type="submit" id="submit-btn" class="btn btn-success searchBtn">Search</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+   
     
-    <!-- main headlines container -->
-    <div class="container text-center my-2">
-        <div class="row" id="top-headlines">
-          <!-- generate random top headlines here -->
-        </div>
-    </div> 
     
-    <!-- queried headlines container -->
-    <div class="container" id="headlinesContainer">
-        <!-- generate the news headlines after search here -->
-    </div>
 
     <!-- firebase link -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>

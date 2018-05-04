@@ -249,11 +249,35 @@ $(document).ready(function () {
         var newsArchiveDiv = $('#news-archive');
 
         //append the varying category/comment articles to different divs
+        if(comment === "excellent journalism") {
+            $('#category-excellent-journal').append(archDiv);
+        }
         if(comment === "comedy") {
             $('#category-comedy').append(archDiv);
         }
         if(comment === "curious and thought provoking") {
             $('#category-thought-provoking').append(archDiv);
+        }
+        if(comment === "head-scratcher") {
+            $('#category-head-scratcher').append(archDiv);
+        }
+        if(comment === "inspirational") {
+            $('#category-inspirational').append(archDiv);
+        }
+        if(comment === "persuasive") {
+            $('#category-persuasive').append(archDiv);
+        }
+        if(comment === "needs fact checking") {
+            $('#category-fact-checking').append(archDiv);
+        }
+        if(comment === "depressing") {
+            $('#category-depressing').append(archDiv);
+        }
+        if(comment === "rage-inducing") {
+            $('#category-rage-inducing').append(archDiv);
+        }
+        if(comment === "borderline propaganda") {
+            $('#category-borderline-propaganda').append(archDiv);
         }
 
         //USE THIS TO SHOW ALL ARCHIVED ARTICLES -- BEFORE MAKING BUTTON LINKS
@@ -265,8 +289,6 @@ $(document).ready(function () {
     });
 
 });
-
-// logic to sort the archive by category
 
     
     
