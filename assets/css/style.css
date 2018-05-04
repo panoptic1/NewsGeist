@@ -77,9 +77,24 @@ LINKS
 BUTTONS
 =============================================== */
 
+.btn {
+    background-color: #4CAF50;
+    font-family: 'Crimson Text', serif;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #3e8e41;
+    transition: all, 0.5s;
+}
+
 .archive-button {
     padding: 0 10px;
-    font-size: 16px;
+    font-family: 'Crimson Text', serif; 
+    font-size: 18px;
+    letter-spacing: 0.5px;
     text-align: center;
     cursor: pointer;
     outline: none;
@@ -100,13 +115,15 @@ MODALS
 =============================================== */
 
 .modal-body {
-    background-color: black;
+    background-color: #141414;
     color: #fff;
 }
 
-/* .modal {
-    background-color: green;
-} */
+label {
+    font-family: 'Crimson Text', serif;
+    font-size: 18px;
+    letter-spacing: 0.9px;
+}
 
 /* ============================================
 NAVBAR
