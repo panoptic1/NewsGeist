@@ -131,7 +131,17 @@ NAVBAR
 
 .navbar {
     font-family: 'Oswald', sans-serif;
+    font-size: 22px;
     background-color: #f2f2f2;
+}
+
+.navbar-light .navbar-nav .active>.nav-link:hover {
+    color: #d9d9d9;
+    transition: all, 0.5s;
+}
+
+.navbar-brand {
+    font-size: 28px;
 }
 
 /* ============================================
@@ -140,6 +150,10 @@ HOME PAGE - SEARCH
 
 .top-headlines-container {
     height: 100%;
+}
+
+hr {
+    width: 50%;
 }
 
 .appendedRow:after {
