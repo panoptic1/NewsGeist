@@ -1,26 +1,46 @@
 /* custom css for news app */
 
+html, body {
+    height: 100%;
+    background-image: url('../images/grey_wash_wall.png');
+}
+
+.container {
+    background-color: #f2f2f2;
+}
+
+.container-fluid {
+    background-color: #d9d9d9;
+}
+
+.top-headlines-container {
+    height: 100%;
+}
+
 img {
     width: 100%;
-    
 }
+
 .giphy-image {
     height: 185px;
     overflow: hidden;
     margin-bottom: 30px;
 }
+
 .search {
     width: 80%;
     display: inline-block;
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
 #submit-btn {
     margin-top: -5px;
 }
 
 .navbar {
     font-family: 'Oswald', sans-serif;
+    background-color: #f2f2f2;
 }
 
 .jumbotron {
@@ -51,3 +71,42 @@ img {
     text-decoration: none;
     color: #692525;
 }
+
+/* .modal {
+    background-color: green;
+} */
+
+.modal-body {
+    background-color: black;
+    color: #fff;
+}
+
+i {
+    cursor: pointer;
+}
+
+.appendedRow:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    border-bottom: 2px solid #bfbfbf; 
+ }
+
+ .archive-button {
+    padding: 0 10px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px #999;
+    transition: .5s;
+    }
+    
+ .archive-button:hover {
+    background-color: #3e8e41}
+

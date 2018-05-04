@@ -36,7 +36,7 @@ $(document).ready(function () {
         //call shuffle array and display headlines on page load
         shuffleArray(category);
  
-    //Create a function to grab 3 random top headlines
+    //function to grab 3 random top headlines from all possible sources
     function topHeadlines(){
 
         for(var i = 0; i < 3; i++){
@@ -53,7 +53,7 @@ $(document).ready(function () {
                 var headlineImage = response.articles[i].urlToImage;
                 var headlineURL = response.articles[i].url;
                 // make DOM variable containers
-                var headlinesDiv = $('<div class="col-4">');
+                var headlinesDiv = $('<div class="col-md-4 col-sm-12">');
                 //create variable to write to html
                 var source = $('<h6 class="source">').text(headlineSource);
                 var URLtag = $('<a>').attr({
@@ -75,15 +75,17 @@ $(document).ready(function () {
     }
  }
 
-
+    // listener for user input on the search bar
     $("#form").submit(function (event) {
         event.preventDefault();
         var data = $("#input-text").val().trim();
         dumpNews(data);
         $('#input-text').val("");
         $('#top-headlines').empty();
+        $('.alert').hide();
     })
 
+    // function to call the news and giphy apis after the search term is entered by user
     function dumpNews(searchTerm) {
 
         //Variables for keyword and API url
@@ -188,6 +190,7 @@ $(document).ready(function () {
                 comment: selectComment
             }
     
+
             database.ref().push(archivedArticle);
 
             $('.modal').modal('hide');
@@ -195,6 +198,11 @@ $(document).ready(function () {
             $("html, body").animate({ scrollTop: 0 }, "slow");
 
         });
+    });
+
+    //listener for top of page ARCHIVE PAGE -- TO DO --
+    $('.top-of-page').on('click', function() {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
     });
 
     //listener to hide archive alert
@@ -206,6 +214,12 @@ $(document).ready(function () {
     database.ref().on('child_added', function(childSnapshot, prevChildkey) {
         
         var url = (childSnapshot.val()).url;
+
+        //check if url exists in the DOM, if so don't append (user will not see it) - TO DO - add user auth
+        if($("a[href='" + url + "']").length > 0) {
+            return;
+        }
+
         var title = (childSnapshot.val().title);
         var source = (childSnapshot.val().source);
         var date = (childSnapshot.val().date);
@@ -234,10 +248,48 @@ $(document).ready(function () {
 
         var newsArchiveDiv = $('#news-archive');
 
-        newsArchiveDiv.append(archDiv);
+        //append the varying category/comment articles to different divs
+        if(comment === "excellent journalism") {
+            $('#category-excellent-journal').append(archDiv);
+        }
+        if(comment === "comedy") {
+            $('#category-comedy').append(archDiv);
+        }
+        if(comment === "curious and thought provoking") {
+            $('#category-thought-provoking').append(archDiv);
+        }
+        if(comment === "head-scratcher") {
+            $('#category-head-scratcher').append(archDiv);
+        }
+        if(comment === "inspirational") {
+            $('#category-inspirational').append(archDiv);
+        }
+        if(comment === "persuasive") {
+            $('#category-persuasive').append(archDiv);
+        }
+        if(comment === "needs fact checking") {
+            $('#category-fact-checking').append(archDiv);
+        }
+        if(comment === "depressing") {
+            $('#category-depressing').append(archDiv);
+        }
+        if(comment === "rage-inducing") {
+            $('#category-rage-inducing').append(archDiv);
+        }
+        if(comment === "borderline propaganda") {
+            $('#category-borderline-propaganda').append(archDiv);
+        }
+
+        //USE THIS TO SHOW ALL ARCHIVED ARTICLES -- BEFORE MAKING BUTTON LINKS
+        // newsArchiveDiv.append(archDiv);
+    });
+
+    $('#comedy').on('click', function() {
+        $('#category-comedy').show();
     });
 
 });
+
     
     
 
