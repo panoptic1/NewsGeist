@@ -288,8 +288,9 @@ $(document).ready(function () {
         $('#category-comedy').show();
     });
 
+    //initialize the scroll to top tooltip for bootstrap
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+
 });
-
-    
-    
-

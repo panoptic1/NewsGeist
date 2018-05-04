@@ -116,6 +116,10 @@ BUTTONS
     transition: all, 0.5s;
 }
 
+.btn-close {
+    background-color: #930000;
+}
+
 .archive-button {
     padding: 0 10px;
     font-family: 'Crimson Text', serif; 
@@ -245,23 +249,3 @@ ARCHIVE PAGE
 .svg-inline--fa.fa-w-10:hover {
     cursor: pointer;
 }
-
-
-
-/* .source {
-    font-family: 'Oswald', sans-serif;
-} */
-
-
-
-
-
-
-
-
-/* i:hover {
-    cursor: pointer;
-} */
-
-
-
