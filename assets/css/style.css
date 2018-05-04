@@ -1,7 +1,4 @@
-input {
-    width: 30%;
-    
-}
+/* custom css for news app */
 
 img {
     width: 100%;
@@ -10,14 +7,53 @@ img {
 .giphy-image {
     height: 185px;
     overflow: hidden;
-    margin-bottom: 30px;
+    
 }
 .search {
     width: 80%;
     display: inline-block;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 #submit-btn {
     margin-top: -5px;
+}
+
+.appendedRow {
+    background-color: #f2f2f2;
+}
+.appendedRow:after {
+    content: ""; /* This is necessary for the pseudo element to work. */ 
+    display: block; /* This will put the pseudo element on its own line. */
+    margin: 0 auto; /* This will center the border. */
+    width: 15%; /* Change this to whatever width you want. */
+    /* padding-bottom: 20px;  */
+    border-bottom: 2px solid #bfbfbf; /* This creates the border. Replace black with whatever color you want. */
+}
+
+
+   
+    
+.archive-button {
+    padding: 0 10px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 1px #999;
+    transition: .5s; 
+    }
+    
+    .archive-button:hover {background-color: #3e8e41}
+    
+.search-row {
+    background-color: #f2f2f2;
+}
+
+#top-headlines {
+    background-color: #f2f2f2;
 }

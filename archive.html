@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Dump</title>
+    <title>NewsGeist</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--Semantic UI-->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">
-    <link rel="stylesheet" href="assets/css/style.css"> -->
     <!-- custom css -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -18,7 +15,7 @@
     
     <!-- bootstrap navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="index.html">placeholder</a>
+        <a class="navbar-brand" href="index.html">NewsGeist</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
          </button>
@@ -27,22 +24,36 @@
                  <li class="nav-item active">
                      <a class="nav-link" href="archive.html">Archive</a>
                  </li> 
+                 <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
              </ul>
          </div>
      </nav>
+
      <!-- bootstrap jumbotron -->
      <div class="jumbotron jumbotron-fluid text-center p-0">
         <div class="container">
           <h1 class="display-4">Archive</h1>
           <p class="lead">a collection of articles chosen by users</p>
         </div>
-      </div>
-    
-    <div class="container text-center">
+    </div>
+
+    <!-- link to home page/search -->
+    <div class="container">
+        <div class="row text-center">
+            <div class="col">
+                <h5><a href="index.html">back to search</a></h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- container for the archived articles -->
+    <div class="container">
         <div class="row">
             <div class="col">
                 <div  id="news-archive">
-                 <!-- generate random top headlines here -->
+                 <!-- generate archived articles here from the database -->
                 </div>
             </div>
         </div>
@@ -50,11 +61,15 @@
     
     <!-- firebase link -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="https://unpkg.com/vue"></script>
+    <!-- jquery -->
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- ajax and plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- moment js -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- bootstrap js -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js"></script>
+    <!-- custom js logic for app -->
     <script src="assets/javascript/logic.js"></script>
 </body>
 </html>
