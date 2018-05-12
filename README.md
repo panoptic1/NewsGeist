@@ -1,1 +1,1 @@
-# Project1
+# NewsGeist is a news aggregator designed to return headlines to its users from a variety of news outlets spanning the ideological spectrum. This gives users broad insight into how any given topic is being reported. Users can also contribute to the NewsGeist database by rating and categorizing the articles that they read on the site. 
